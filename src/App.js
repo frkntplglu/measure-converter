@@ -9,52 +9,52 @@ function App() {
   const [result, setResult] = useState(0);
 
   useEffect(() => {
-    handleConverter();
-  })
+    handleConverter(amount);
+  },[unitOne,unitTwo])
 
   const handleConverter = (value) => {
     console.log(value)
     
     if(unitOne === 'km'){
       if(unitTwo === 'km')
-        setResult(amount)
+        setResult(value)
         
       else if(unitTwo === 'm')
-        setResult(amount * 1000)
+        setResult(value * 1000)
       else if(unitTwo === 'cm')
-        setResult(amount * 100000)
+        setResult(value * 100000)
       else if(unitTwo === 'mm')
-        setResult(amount * 1000000)
+        setResult(value * 1000000)
     }
     else if(unitOne === 'm'){
       if(unitTwo === 'm')
-        setResult(amount)
+        setResult(value)
       else if(unitTwo === 'km')
-        setResult(amount / 1000)
+        setResult(value / 1000)
       else if(unitTwo === 'cm')
-        setResult(amount * 100)
+        setResult(value * 100)
       else if(unitTwo === 'mm')
-        setResult(amount * 1000)
+        setResult(value * 1000)
     }
     else if(unitOne === 'cm'){
       if(unitTwo === 'm')
-        setResult(amount / 100)
+        setResult(value / 100)
       else if(unitTwo === 'km')
-        setResult(amount / 100000)
+        setResult(value / 100000)
       else if(unitTwo === 'cm')
-        setResult(amount)
+        setResult(value)
       else if(unitTwo === 'mm')
-        setResult(amount * 10)
+        setResult(value * 10)
     }
     else if(unitOne === 'mm'){
       if(unitTwo === 'm')
-        setResult(amount / 1000)
+        setResult(value / 1000)
       else if(unitTwo === 'km')
-        setResult(amount / 1000000)
+        setResult(value / 1000000)
       else if(unitTwo === 'cm')
-        setResult(amount / 10)
+        setResult(value / 10)
       else if(unitTwo === 'mm')
-        setResult(amount)
+        setResult(value)
     }
   }
 
@@ -65,6 +65,7 @@ function App() {
           <p>Amount : </p>
           <input type="number" onChange={(e) => {
             setAmount(e.target.value);
+            handleConverter(e.target.value);
           }} value={amount} />
         </div>
         <div className="form-group">
